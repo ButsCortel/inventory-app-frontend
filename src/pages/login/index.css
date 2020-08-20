@@ -1,0 +1,18 @@
+h2,
+p {
+  text-align: center;
+}
+.btn.submit-btn {
+  width: 100%;
+  margin: auto;
+  padding: auto;
+  background: #ff6600 !important;
+  border: white !important  ;
+}
+.btn.secondary-btn {
+  width: 100%;
+  margin: auto;
+  padding: auto;
+  background: #611f61 !important;
+  border: white !important  ;
+}
