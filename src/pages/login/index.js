@@ -5,7 +5,7 @@ import api from "../../services/api";
 import "./index.css";
 
 const LoginPage = ({ history }) => {
-  const [state, setState] = useState({
+  const [login, setLogin] = useState({
     email: "",
     password: "",
     hasError: false,
@@ -15,10 +15,10 @@ const LoginPage = ({ history }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { email, password } = state;
+      const { email, password } = login;
       if (!email || !password)
-        return setState({
-          ...state,
+        return setLogin({
+          ...login,
           hasError: true,
           errorMessage: "Missing required information!",
         });
@@ -27,10 +27,11 @@ const LoginPage = ({ history }) => {
       const { user_id, token } = response.data;
       localStorage.setItem("user", user_id);
       localStorage.setItem("token", token);
-      setState({ ...state, hasError: false, errorMessage: "" });
+      setLogin({ ...login, hasError: false, errorMessage: "" });
+      history.push("/inventory");
     } catch (error) {
       console.log(error);
-      setState({ ...state, hasError: true, errorMessage: error.response.data });
+      setLogin({ ...login, hasError: true, errorMessage: error.response.data });
     }
   };
   const handleClick = () => {
@@ -38,7 +39,7 @@ const LoginPage = ({ history }) => {
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setState({ ...state, [name]: value });
+    setLogin({ ...login, [name]: value });
   };
 
   return (
@@ -51,7 +52,7 @@ const LoginPage = ({ history }) => {
           <FormGroup>
             <Input
               type="email"
-              value={state.email}
+              value={login.email}
               name="email"
               onChange={handleChange}
               placeholder="Email"
@@ -60,7 +61,7 @@ const LoginPage = ({ history }) => {
           <FormGroup>
             <Input
               type="password"
-              value={state.password}
+              value={login.password}
               name="password"
               placeholder="Password"
               onChange={handleChange}
@@ -73,7 +74,7 @@ const LoginPage = ({ history }) => {
           </Button>
         </Form>
       </div>
-      {state.hasError ? <Alert color="danger">{state.errorMessage}</Alert> : ""}
+      {login.hasError ? <Alert color="danger">{login.errorMessage}</Alert> : ""}
     </>
   );
 };

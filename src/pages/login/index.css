@@ -11,7 +11,7 @@ p {
 }
 .btn.secondary-btn {
   width: 100%;
-  margin: auto;
+  margin: 10px auto !important;
   padding: auto;
   background: #611f61 !important;
   border: white !important  ;

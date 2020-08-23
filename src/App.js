@@ -1,14 +1,17 @@
 import React from "react";
 import Routes from "./routes";
-import { Container, Row, Col } from "reactstrap";
+import { Container } from "reactstrap";
 //import logo from "./logo.svg";
 import "./App.css";
+import { ContextWrapper } from "./products-context";
 
 function App() {
   return (
-    <Container>
-      <Routes />
-    </Container>
+    <ContextWrapper>
+      <Container>
+        <Routes />
+      </Container>
+    </ContextWrapper>
   );
 }
 
