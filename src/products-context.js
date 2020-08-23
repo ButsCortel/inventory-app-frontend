@@ -4,7 +4,8 @@ export const ProductsContext = createContext();
 export const ContextWrapper = (props) => {
   const defaultValue = () => {
     const user = localStorage.getItem("user");
-    if (user) return true;
+    const token = localStorage.getItem("token");
+    if (user && token) return true;
     return false;
   };
   const [state, setState] = useState({

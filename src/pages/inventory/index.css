@@ -74,13 +74,25 @@ input[disabled] {
 button[disabled] {
   pointer-events: none;
 }
+.modal-header h5 {
+  margin: auto;
+}
+.modal-body {
+  display: flex;
+  flex-direction: row;
+}
+.product-info {
+  margin: 5px;
+  display: grid;
+  grid-template-columns: 1fr;
+}
 #controls {
   position: relative;
 }
 #count {
   display: inline-block;
   text-align: center;
-  width: 100px;
+  width: 80px;
 }
 #controls button {
   width: 50%;

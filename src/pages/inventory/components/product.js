@@ -2,27 +2,9 @@ import React, { useState } from "react";
 import { Button, Input, Alert } from "reactstrap";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
-const Product = ({ onClick, product, onChange }) => {
-  // const [count, setCount] = useState(0);
-  // const [added, setAdded] = useState(false);
-  // const [state, setState] = useState({
-  //   count: 0,
-  //   added: false,
-  // });
-  // const handleClick = () => {
-  //   setState({ ...state, added: !state.added });
-  //   if (!state.added) return onClick(true, product.name);
-  //   onClick(false, product.name);
-  // };
-  // const handleChange = (e) => {
-  //   const { value } = e.target;
-  //   if (!Number(value) && !value) return;
-  //   if (value >= 0 && value <= product.stock) {
-  //     setState({ ...state, count: value });
-  //   }
-  // };
+const Product = ({ onClick, product, onChange, showModal }) => {
   return (
-    <li key={product.p_id}>
+    <li key={product.p_id} onClick={() => showModal(product)}>
       <header
         style={{
           backgroundImage: `url(${product.thumbnail_url})`,
@@ -30,7 +12,6 @@ const Product = ({ onClick, product, onChange }) => {
         }}
       />
       <strong>{product.name}</strong>
-      {/* <span>Date: {moment(event.date).format("l")}</span> */}
       <span>&#8369;{parseFloat(product.price).toFixed(2)}</span>
       <span>{product.description}</span>
       <span style={product.stock ? { color: "green" } : { color: "red" }}>

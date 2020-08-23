@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Form, FormGroup, Input, Alert } from "reactstrap";
 import api from "../../services/api";
+import { ProductsContext } from "../../products-context";
 
 import "./index.css";
 
@@ -11,6 +12,7 @@ const LoginPage = ({ history }) => {
     hasError: false,
     errorMessage: "",
   });
+  const { state, setState } = useContext(ProductsContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +30,8 @@ const LoginPage = ({ history }) => {
       localStorage.setItem("user", user_id);
       localStorage.setItem("token", token);
       setLogin({ ...login, hasError: false, errorMessage: "" });
-      history.push("/inventory");
+      setState({ ...state, logged: true });
+      history.push("/");
     } catch (error) {
       console.log(error);
       setLogin({ ...login, hasError: true, errorMessage: error.response.data });
